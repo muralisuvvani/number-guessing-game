@@ -3,10 +3,10 @@ import random
 import math
 import base64
 
-# ---------- Must be the first Streamlit command ---------- #
+
 st.set_page_config(page_title="🎯 Number Guessing Game", layout="centered")
 
-# ---------- Set Background from Local Image ---------- #
+
 def set_bg_from_local(image_file):
     with open(image_file, "rb") as file:
         encoded_string = base64.b64encode(file.read()).decode()
@@ -58,20 +58,20 @@ def set_bg_from_local(image_file):
         unsafe_allow_html=True
     )
 
-# ---------- Apply Background ---------- #
-set_bg_from_local("grou.jpg")  # Change filename if needed
 
-# ---------- Title ---------- #
+set_bg_from_local("grou.jpg")  
+
+
 st.markdown("<h1>🎯 Welcome to the Number Guessing Game!</h1>", unsafe_allow_html=True)
 
-# ---------- Initialize Session State ---------- #
+#  Initialize Session State  
 if "stage" not in st.session_state:
     st.session_state.stage = "init"
     st.session_state.count = 0
     st.session_state.rand = None
     st.session_state.max_guess = 0
 
-# ---------- Game Setup Stage ---------- #
+# Game Setup Stage 
 if st.session_state.stage == "init":
     st.markdown("### Select your number range:")
 
@@ -92,7 +92,7 @@ if st.session_state.stage == "init":
         st.session_state.stage = "playing"
         st.success(f"Game started! You have {st.session_state.max_guess} chances to guess a number between {lower} and {upper}.")
 
-# ---------- Game Playing Stage ---------- #
+
 if st.session_state.stage == "playing":
     guess = st.number_input("Enter your guess:", min_value=st.session_state.low, max_value=st.session_state.high, step=1, key="guess")
 
